@@ -1,0 +1,18 @@
+#######################################
+# Syntax Coloring Map For MyIoT
+#######################################
+
+# Datatypes (KEYWORD1)
+MyIoTClass	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+begin	KEYWORD2
+run	KEYWORD2
+virtualWrite	KEYWORD2
+virtualRead	KEYWORD2
+resetWifi	KEYWORD2
+getDeviceId	KEYWORD2
+onVirtualWrite	KEYWORD2
+
+# Instances (KEYWORD2)
+MyIoT	KEYWORD2

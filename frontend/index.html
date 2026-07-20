@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>SR-IoT Dashboard</title>
+<meta name="theme-color" content="#5b5fef">
+<meta name="description" content="Dashboard IoT bergaya Blynk untuk mikrokontrolermu">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-32.png" sizes="32x32">
+<link rel="icon" href="icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SR-IoT">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- persistent header, shown only on the two main list views -->
+  <div class="topbar" id="main-topbar">
+    <div class="brand-mark">
+      <img src="icon-192.png" alt="SR-IoT">
+      <div class="logo">SR-<span>IoT</span></div>
+    </div>
+    <div class="account-btn" id="account-btn" onclick="go('profile')">☺</div>
+  </div>
+
+  <!-- AUTH (login/register) -->
+  <div class="auth-wrap hidden" id="view-auth"></div>
+
+  <!-- DEVICES -->
+  <div class="view" id="view-devices"></div>
+
+  <!-- TEMPLATES -->
+  <div class="view hidden" id="view-templates"></div>
+
+  <!-- PROFILE -->
+  <div class="view hidden" id="view-profile"></div>
+
+  <!-- DEVICE DASHBOARD -->
+  <div class="view hidden" id="view-device-dashboard"></div>
+
+  <!-- TEMPLATE EDITOR -->
+  <div class="view hidden" id="view-template-editor"></div>
+
+  <!-- WI-FI SETUP -->
+  <div class="view hidden" id="view-wifi-setup"></div>
+
+  <!-- Floating add button -->
+  <div class="fab" id="fab">+</div>
+
+  <!-- Bottom navigation -->
+  <div class="bottomnav" id="bottomnav">
+    <div class="navbtn active" id="nav-devices" onclick="goTab('devices')">
+      <span class="ic">📟</span>Device
+    </div>
+    <div class="navbtn" id="nav-templates" onclick="goTab('templates')">
+      <span class="ic">🎛️</span>Template
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop hidden" id="modal-backdrop" onclick="if(event.target===this)closeModal()">
+    <div class="modal" id="modal-content"></div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="app.js"></script>
+<script>
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('sw.js').catch(()=>{});
+    });
+  }
+</script>
+</body>
+</html>

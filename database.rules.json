@@ -1,0 +1,40 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "devices": {
+      "$deviceId": {
+
+        "ownerUid": {
+          ".read": "auth != null && (auth.uid === $deviceId || data.val() === auth.uid)",
+          ".write": "auth != null && (!data.exists() || data.val() === auth.uid)"
+        },
+
+        "data": {
+          ".read": "auth != null && (auth.uid === $deviceId || root.child('devices').child($deviceId).child('ownerUid').val() === auth.uid)",
+          ".write": "auth != null && auth.uid === $deviceId"
+        },
+
+        "status": {
+          ".read": "auth != null && (auth.uid === $deviceId || root.child('devices').child($deviceId).child('ownerUid').val() === auth.uid)",
+          ".write": "auth != null && auth.uid === $deviceId"
+        },
+
+        "commands": {
+          ".read": "auth != null && auth.uid === $deviceId",
+          ".write": "auth != null && root.child('devices').child($deviceId).child('ownerUid').val() === auth.uid"
+        },
+
+        "history": {
+          ".read": "auth != null && root.child('devices').child($deviceId).child('ownerUid').val() === auth.uid",
+          ".write": "auth != null && auth.uid === $deviceId"
+        }
+
+      }
+    }
+  }
+}
