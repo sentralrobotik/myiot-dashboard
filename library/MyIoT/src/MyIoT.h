@@ -7,7 +7,8 @@ typedef void (*MyIoTWriteHandler)(int pin, float value);
 
 class MyIoTClass {
   public:
-    void begin(const char* apiKey, const char* firebaseHost);
+    void begin(); // pakai API key & host Firebase bawaan (sudah diatur di MyIoT.cpp)
+    void begin(const char* apiKey, const char* firebaseHost); // dipakai kalau mau pakai project Firebase sendiri
     void run();                                   // panggil di loop()
     void virtualWrite(int pin, float value);       // kirim data sensor
     float virtualRead(int pin);                    // baca nilai terakhir
