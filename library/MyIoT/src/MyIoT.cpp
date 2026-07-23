@@ -94,7 +94,17 @@ static void storageClearWifi() {
 #endif
 }
 
+// ---------- Kredensial Firebase default (dipakai bareng-bareng, sekelas) ----------
+// Ini bukan password rahasia -- keamanan sebenarnya diatur oleh Firebase Security Rules
+// (tiap device dapat ID unik sendiri saat sign-in anonim, jadi aman dipakai banyak kelompok).
+static const char* MYIOT_DEFAULT_API_KEY  = "AIzaSyCexrk4wcs_lRUpNJM0_bHuIGJNBjto0fY";
+static const char* MYIOT_DEFAULT_HOST     = "https://myiot-dashboard-default-rtdb.asia-southeast1.firebasedatabase.app";
+
 // ---------- Setup & WiFi ----------
+
+void MyIoTClass::begin() {
+  begin(MYIOT_DEFAULT_API_KEY, MYIOT_DEFAULT_HOST);
+}
 
 void MyIoTClass::begin(const char* apiKey, const char* firebaseHost) {
   _apiKey = apiKey;
